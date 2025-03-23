@@ -27,11 +27,11 @@ This part focuses on XGBoost's unique approach to building regression trees. The
 ### Calculate Similarity Score
 Formula:
 
-```markdown
-\[
-\text{Similarity Score} = \frac{\sum (\text{residuals})^2}{\text{number of residuals} + \lambda}
-\]
-```
+![image](https://github.com/user-attachments/assets/85a49767-9dd0-408f-8f48-ea9fd1a694e2)
+
+
+![image](https://github.com/user-attachments/assets/dec81d7f-3f8b-41e3-8c59-89c8efd395b0)
+
 
 - Set **λ (lambda) to 0** temporarily for calculations.
 
@@ -49,11 +49,8 @@ Gain measures how much better the split is at clustering similar residuals.
 
 Formula:
 
-```markdown
-\[
-\text{Gain} = \text{Similarity Score (Left Leaf)} + \text{Similarity Score (Right Leaf)} - \text{Similarity Score (Root)}
-\]
-```
+![image](https://github.com/user-attachments/assets/50f33d04-8dbd-4b92-8a82-b0646fed14fd)
+
 
 ### Pruning the Tree
 #### Define Gamma (γ) for Pruning:
@@ -61,6 +58,8 @@ Formula:
 - **Example Scenario**:
   - With a chosen **γ** (e.g., **130**):
   - Evaluate **gain** differences and decide whether to keep branches.
+  - ![image](https://github.com/user-attachments/assets/6682b21a-c94d-4fad-8679-c99fc0bd238c)
+
 
 ## Output Values
 Formula:
@@ -72,7 +71,11 @@ Formula:
 ```
 
 - When **λ = 0**, the output is the **average of the residuals**.
-- Increasing **λ** reduces **individual observation contribution**.
+- Increasing **λ** reduces **individual observation contribution**. The pruning becomes easier when **λ > 1**
+- ![image](https://github.com/user-attachments/assets/898a1a18-a070-41bf-a9a1-739401ea632f)
+
+-![image](https://github.com/user-attachments/assets/b08ff438-352e-4902-8ddc-12f8a69840d8)
+
 
 ## Predictions
 - New predictions combine the **initial prediction** with the output of trees, **scaled by learning rate (η)**.
